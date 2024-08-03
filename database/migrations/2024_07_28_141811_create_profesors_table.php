@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('materia');
             $table->string('correo_electronico');
+            $table->string('imagen');
+
 
         });
     }

@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Profesor;
 use Illuminate\Http\Request;
+
+
 class ProfesorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $profesor = Profesor::all();
+        return view('profesores.index', compact('profesor'));
     }
 
     /**
@@ -25,13 +26,16 @@ class ProfesorController extends Controller
 
 
     public function store (Request $request)
-    {
+            {
 
         $profesor = new Profesor();
         $profesor->nombre= $request->input('nombre');
         $profesor->apellido= $request->input('apellido');
         $profesor->materia= $request->input('materia');
         $profesor->correo_electronico= $request->input('correo_electronico');
+        if($request->hasFile('imagen')){
+            $profesor->imagen = $request->file('imagen')->store('public/profesores');
+        }
         $profesor->save();
         return 'Guardado con exito';
     }
@@ -41,7 +45,9 @@ class ProfesorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $profesor = Profesor::find($id);
+
+        return view('profesores.show', compact('profesor'));
     }
 
     /**
@@ -49,7 +55,8 @@ class ProfesorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $profesor = Profesor::find($id);
+        return view('profesores.edit', compact('profesor'));
     }
 
     /**
@@ -57,7 +64,13 @@ class ProfesorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $profesor = Profesor::find($id);
+        $profesor ->fill($request->except('imagen'));
+        if ($request->hasFile('imagen')){
+            $profesor->imagen = $request -> file('imagen')-> store('public/profesores');
+        }
+        $profesor->save();
+        return 'Información Actualizada';
     }
 
     /**

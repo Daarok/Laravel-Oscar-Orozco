@@ -7,7 +7,7 @@
 @section('contenido')
 <br>
 <h3>Crear Nuevo Profesor</h3>
-<form action="/profesores" method="post">
+<form action="/profesores" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mb-3">
         <label for="nombreprofesor" class="form-label">Nombre</label>
@@ -29,6 +29,11 @@
         <input type="text" class="form-control" id="correo_electronico" name="correo_electronico">
     </div>
 
+    <div class="form-group">
+        <label for="imagen">Cargar imagen</label>
+        <br>
+        <input name="imagen" id="imagen" type="file">
+    </div>
 
 
     <button type="submit" class="btn btn-success">Guardar</button>
