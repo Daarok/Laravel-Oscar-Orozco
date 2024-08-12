@@ -5,6 +5,7 @@
 @section('titulo','Crear profesor')
 
 @section('contenido')
+
 <br>
 <h3>Crear Nuevo Profesor</h3>
 <form action="/profesores" method="post" enctype="multipart/form-data">
@@ -15,7 +16,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="apellidoprofesor" class="form-label">Apellido</label>
+        <label for="apellidoprofesor" class="form-label">descripcion</label>
         <input type="text" class="form-control" id="apellido" name="apellido">
     </div>
 
@@ -34,7 +35,6 @@
         <br>
         <input name="imagen" id="imagen" type="file">
     </div>
-
 
     <button type="submit" class="btn btn-success">Guardar</button>
     </form>
